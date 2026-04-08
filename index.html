@@ -1,12 +1,540 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de-CH">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MindGuard</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MindGuard | Überwache und schütze deine Achtsamkeit</title>
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #121933;
+      --card: rgba(255,255,255,0.08);
+      --text: #f4f7fb;
+      --muted: #bfc8d9;
+      --accent: #50c4ff;
+      --accent-2: #7ef0c7;
+      --danger: #ff6b6b;
+      --border: rgba(255,255,255,0.12);
+      --shadow: 0 18px 40px rgba(0,0,0,0.28);
+      --radius: 22px;
+      --max: 1120px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(80,196,255,0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(126,240,199,0.18), transparent 28%),
+        linear-gradient(180deg, #09101f 0%, #0f1730 100%);
+      line-height: 1.55;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    .container {
+      width: min(var(--max), calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 30;
+      backdrop-filter: blur(14px);
+      background: rgba(8, 12, 24, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 72px;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+
+    .logo {
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #041221;
+      font-weight: 900;
+      box-shadow: var(--shadow);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 72px 0 48px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 28px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 5vw, 4.4rem);
+      line-height: 1.02;
+      margin: 0 0 18px;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 62ch;
+      margin-bottom: 24px;
+    }
+
+    .cta-row {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 14px 20px;
+      border-radius: 14px;
+      font-weight: 700;
+      border: 1px solid transparent;
+      transition: transform 0.18s ease, opacity 0.18s ease;
+    }
+
+    .button:hover { transform: translateY(-1px); opacity: 0.96; }
+
+    .button-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #041221;
+      box-shadow: var(--shadow);
+    }
+
+    .button-secondary {
+      border-color: var(--border);
+      background: rgba(255,255,255,0.05);
+      color: var(--text);
+    }
+
+    .hero-note {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .hero-card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .screen {
+      border-radius: 20px;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: #050912;
+    }
+
+    .screen-top {
+      display: flex;
+      gap: 8px;
+      padding: 12px 14px;
+      background: #0e1528;
+    }
+
+    .dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.25);
+    }
+
+    .screen-body {
+      padding: 28px 24px 24px;
+      min-height: 290px;
+      background:
+        radial-gradient(circle at top, rgba(80,196,255,0.18), transparent 25%),
+        linear-gradient(180deg, #0b1224, #070b15);
+    }
+
+    .camera-box {
+      height: 148px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: linear-gradient(135deg, rgba(80,196,255,0.12), rgba(126,240,199,0.08));
+      display: grid;
+      place-items: center;
+      font-size: 3rem;
+      margin-bottom: 18px;
+    }
+
+    .status-bar {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .status-pill {
+      padding: 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+      font-size: 0.92rem;
+      color: var(--muted);
+    }
+
+    section {
+      padding: 30px 0;
+    }
+
+    .section-title {
+      font-size: clamp(1.65rem, 3vw, 2.4rem);
+      margin: 0 0 12px;
+      letter-spacing: -0.02em;
+    }
+
+    .section-intro {
+      color: var(--muted);
+      max-width: 70ch;
+      margin-bottom: 24px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      box-shadow: var(--shadow);
+    }
+
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      font-size: 1.08rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .feature-list {
+      display: grid;
+      gap: 14px;
+    }
+
+    .feature-item {
+      padding: 16px 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .feature-item strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .download-box {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .price {
+      font-size: 2rem;
+      font-weight: 800;
+      margin: 6px 0 12px;
+    }
+
+    .small {
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+
+    .notice {
+      border-left: 4px solid var(--danger);
+      padding: 14px 16px;
+      background: rgba(255,107,107,0.1);
+      border-radius: 12px;
+      color: var(--text);
+      margin-top: 14px;
+    }
+
+    footer {
+      padding: 34px 0 56px;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .footer-grid {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    @media (max-width: 960px) {
+      .hero-grid,
+      .grid-3,
+      .two-col,
+      .download-box {
+        grid-template-columns: 1fr;
+      }
+
+      .nav {
+        align-items: flex-start;
+        padding: 14px 0;
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .status-bar {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 44px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-  <h1>MindGuard</h1>
-  <p>Offizielle Webseite von MindGuard.</p>
+  <header>
+    <div class="container nav">
+      <div class="brand">
+        <div class="logo">MG</div>
+        <span>MindGuard</span>
+      </div>
+      <nav class="nav-links">
+        <a href="#funktionen">Funktionen</a>
+        <a href="#vorteile">Vorteile</a>
+        <a href="#download">Download</a>
+        <a href="#datenschutz">Datenschutz</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-grid">
+        <div>
+          <div class="badge">MindGuard · Test-Webseite für die Bachelorarbeit</div>
+          <h1>Überwache und schütze deine Achtsamkeit.</h1>
+          <p class="lead">
+            MindGuard ist eine Desktop-Anwendung, die mögliche Ablenkung und Inaktivität am Bildschirmarbeitsplatz erkennt und bei längerer Ablenkung dezente visuelle oder akustische Warnsignale ausgeben kann.
+          </p>
+          <div class="cta-row">
+            <a class="button button-primary" href="#download">Download ansehen</a>
+            <a class="button button-secondary" href="#funktionen">Mehr erfahren</a>
+          </div>
+          <p class="hero-note">
+            Fokus auf macOS · später ausbaubar für Windows und Linux · lokale Analyse ohne dauerhafte Speicherung von Videodaten
+          </p>
+        </div>
+
+        <div class="hero-card">
+          <div class="screen">
+            <div class="screen-top">
+              <span class="dot"></span>
+              <span class="dot"></span>
+              <span class="dot"></span>
+            </div>
+            <div class="screen-body">
+              <div class="camera-box">🎯</div>
+              <div class="status-bar">
+                <div class="status-pill">Kamera aktiv</div>
+                <div class="status-pill">Fokusmodus bereit</div>
+                <div class="status-pill">Warnung dezent</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="funktionen">
+      <div class="container">
+        <h2 class="section-title">Was MindGuard macht</h2>
+        <p class="section-intro">
+          MindGuard setzt nicht auf harte Sperren, sondern auf subtile Rückmeldungen. Die Anwendung analysiert die Aufmerksamkeit lokal über die Kamera und erinnert bei anhaltender Ablenkung daran, den Fokus wieder auf die eigentliche Aufgabe zu richten.
+        </p>
+        <div class="grid-3">
+          <article class="card">
+            <h3>Ablenkung erkennen</h3>
+            <p>Die App analysiert Gesichtslandmarks und erkennt, wenn der Blick über längere Zeit vom Bildschirm abweicht.</p>
+          </article>
+          <article class="card">
+            <h3>Dezent warnen</h3>
+            <p>Statt Inhalte zu blockieren, arbeitet MindGuard mit visuellen oder akustischen Warnsignalen.</p>
+          </article>
+          <article class="card">
+            <h3>Individuell anpassen</h3>
+            <p>Wichtige Parameter wie Empfindlichkeit, Frames bis Warnung und Frames pro Sekunde sind einstellbar.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="vorteile">
+      <div class="container two-col">
+        <div class="card">
+          <h2 class="section-title">Vorteile</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Lokale Analyse</strong>
+              Keine dauerhafte Speicherung oder Weitergabe von Videodaten.
+            </div>
+            <div class="feature-item">
+              <strong>Dezente Nutzung</strong>
+              Ideal für Lern- und Arbeitsumgebungen, in denen keine aggressive Blockierung gewünscht ist.
+            </div>
+            <div class="feature-item">
+              <strong>Flexible Einstellungen</strong>
+              Kann an verschiedene Kamerapositionen, Arbeitsweisen und Bedürfnisse angepasst werden.
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h2 class="section-title">Geeignet für</h2>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Studierende</strong>
+              Für fokussierteres Lernen am Laptop oder externen Bildschirm.
+            </div>
+            <div class="feature-item">
+              <strong>Berufstätige</strong>
+              Für mehr Konzentration im Büro oder Homeoffice.
+            </div>
+            <div class="feature-item">
+              <strong>Spätere Weiterentwicklung</strong>
+              Grundlage für Lizenzierung, Benutzerstudie, Website und Download-Verteilung.
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="download">
+      <div class="container download-box">
+        <div class="card">
+          <h2 class="section-title">Download</h2>
+          <p class="section-intro">
+            Diese Seite ist aktuell eine Test-Webseite. Später kann hier die veröffentlichte Version von MindGuard für macOS bereitgestellt werden.
+          </p>
+          <div class="cta-row">
+            <a class="button button-primary" href="#">Testversion herunterladen</a>
+            <a class="button button-secondary" href="#">Lizenz kaufen</a>
+          </div>
+          <p class="small">Geplante Verteilung: Website + Download-Link + optionale Lizenzaktivierung</p>
+          <div class="notice">
+            Hinweis: Die Download- und Kauf-Buttons sind in dieser Testversion noch Platzhalter.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Geplantes Modell</h3>
+          <div class="price">ab CHF 9</div>
+          <p class="small">Beispielpreis für eine spätere Einzellizenz</p>
+          <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.08); margin: 18px 0;">
+          <p class="small">Version</p>
+          <p>MindGuard 1.0 Test</p>
+          <p class="small">Plattform</p>
+          <p>macOS</p>
+          <p class="small">Status</p>
+          <p>Prototyp / Bachelorarbeit</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="datenschutz">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">Datenschutz</h2>
+          <p class="section-intro">
+            MindGuard ist so gedacht, dass die Analyse lokal auf dem Gerät erfolgt. Videodaten sollen nicht dauerhaft gespeichert oder an Dritte weitergegeben werden. Gespeichert werden nur notwendige Einstellungen oder später gegebenenfalls Lizenzinformationen.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer id="kontakt">
+    <div class="container footer-grid">
+      <div>
+        <strong>MindGuard</strong><br>
+        Test-Webseite für die Bachelorarbeit
+      </div>
+      <div>
+        Kontakt: daniel.bucher@example.com<br>
+        Ort: Schweiz
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

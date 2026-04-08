@@ -4,38 +4,51 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>MindGuard | Überwache und schütze deine Achtsamkeit</title>
+  <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     :root {
-      --bg: #0b1020;
-      --bg-soft: #121933;
-      --card: rgba(255,255,255,0.08);
+      --bg: #07101d;
+      --bg-soft: #0d1729;
+      --card: rgba(255,255,255,0.06);
+      --card-strong: rgba(255,255,255,0.09);
       --text: #f4f7fb;
-      --muted: #bfc8d9;
-      --accent: #50c4ff;
-      --accent-2: #7ef0c7;
-      --danger: #ff6b6b;
-      --border: rgba(255,255,255,0.12);
-      --shadow: 0 18px 40px rgba(0,0,0,0.28);
+      --muted: #b8c2d6;
+      --accent: #45b9ff;
+      --accent-2: #70f0c8;
+      --border: rgba(255,255,255,0.1);
+      --shadow: 0 18px 40px rgba(0,0,0,0.30);
       --radius: 22px;
-      --max: 1120px;
+      --max: 1180px;
     }
 
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
-    html { scroll-behavior: smooth; }
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       margin: 0;
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       color: var(--text);
+      line-height: 1.6;
       background:
-        radial-gradient(circle at top left, rgba(80,196,255,0.18), transparent 30%),
-        radial-gradient(circle at top right, rgba(126,240,199,0.18), transparent 28%),
-        linear-gradient(180deg, #09101f 0%, #0f1730 100%);
-      line-height: 1.55;
+        radial-gradient(circle at top left, rgba(69,185,255,0.15), transparent 25%),
+        radial-gradient(circle at top right, rgba(112,240,200,0.12), transparent 20%),
+        linear-gradient(180deg, #060c18 0%, #0b1424 100%);
     }
 
-    a { color: inherit; text-decoration: none; }
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
 
     .container {
       width: min(var(--max), calc(100% - 32px));
@@ -45,42 +58,37 @@
     header {
       position: sticky;
       top: 0;
-      z-index: 30;
+      z-index: 100;
       backdrop-filter: blur(14px);
-      background: rgba(8, 12, 24, 0.72);
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+      background: rgba(7, 11, 20, 0.72);
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
     .nav {
+      min-height: 74px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      min-height: 72px;
-      gap: 18px;
+      gap: 20px;
     }
 
     .brand {
       display: flex;
       align-items: center;
       gap: 12px;
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-weight: 800;
+      font-size: 1.12rem;
     }
 
-    .logo {
-      width: 42px;
-      height: 42px;
-      border-radius: 14px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #041221;
-      font-weight: 900;
-      box-shadow: var(--shadow);
+    .brand img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
     }
 
     .nav-links {
       display: flex;
+      align-items: center;
       gap: 18px;
       flex-wrap: wrap;
       color: var(--muted);
@@ -88,13 +96,13 @@
     }
 
     .hero {
-      padding: 72px 0 48px;
+      padding: 68px 0 38px;
     }
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 28px;
+      grid-template-columns: 1fr 1.02fr;
+      gap: 30px;
       align-items: center;
     }
 
@@ -102,26 +110,26 @@
       display: inline-flex;
       align-items: center;
       gap: 8px;
-      padding: 8px 14px;
-      border: 1px solid var(--border);
+      padding: 9px 14px;
       border-radius: 999px;
-      background: rgba(255,255,255,0.06);
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
       color: var(--muted);
       font-size: 0.92rem;
       margin-bottom: 18px;
     }
 
     h1 {
+      margin: 0 0 18px;
       font-size: clamp(2.3rem, 5vw, 4.4rem);
       line-height: 1.02;
-      margin: 0 0 18px;
       letter-spacing: -0.03em;
     }
 
     .lead {
-      font-size: 1.08rem;
       color: var(--muted);
-      max-width: 62ch;
+      font-size: 1.08rem;
+      max-width: 60ch;
       margin-bottom: 24px;
     }
 
@@ -129,101 +137,54 @@
       display: flex;
       gap: 14px;
       flex-wrap: wrap;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .button {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 14px 20px;
+      padding: 14px 22px;
       border-radius: 14px;
       font-weight: 700;
       border: 1px solid transparent;
       transition: transform 0.18s ease, opacity 0.18s ease;
     }
 
-    .button:hover { transform: translateY(-1px); opacity: 0.96; }
+    .button:hover {
+      transform: translateY(-1px);
+      opacity: 0.96;
+    }
 
     .button-primary {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #041221;
+      color: #06111f;
       box-shadow: var(--shadow);
     }
 
     .button-secondary {
+      background: rgba(255,255,255,0.04);
       border-color: var(--border);
-      background: rgba(255,255,255,0.05);
       color: var(--text);
     }
 
     .hero-note {
       color: var(--muted);
-      font-size: 0.92rem;
+      font-size: 0.93rem;
     }
 
-    .hero-card {
-      background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.04));
+    .hero-visual {
+      background: linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.03));
       border: 1px solid var(--border);
       border-radius: 28px;
       box-shadow: var(--shadow);
-      padding: 22px;
+      padding: 18px;
     }
 
-    .screen {
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: #050912;
-    }
-
-    .screen-top {
-      display: flex;
-      gap: 8px;
-      padding: 12px 14px;
-      background: #0e1528;
-    }
-
-    .dot {
-      width: 10px;
-      height: 10px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.25);
-    }
-
-    .screen-body {
-      padding: 28px 24px 24px;
-      min-height: 290px;
-      background:
-        radial-gradient(circle at top, rgba(80,196,255,0.18), transparent 25%),
-        linear-gradient(180deg, #0b1224, #070b15);
-    }
-
-    .camera-box {
-      height: 148px;
-      border-radius: 20px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: linear-gradient(135deg, rgba(80,196,255,0.12), rgba(126,240,199,0.08));
-      display: grid;
-      place-items: center;
-      font-size: 3rem;
-      margin-bottom: 18px;
-    }
-
-    .status-bar {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 10px;
-    }
-
-    .status-pill {
-      padding: 12px;
-      border-radius: 14px;
-      background: rgba(255,255,255,0.06);
+    .hero-visual img {
+      width: 100%;
+      border-radius: 18px;
       border: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-      font-size: 0.92rem;
-      color: var(--muted);
     }
 
     section {
@@ -231,8 +192,8 @@
     }
 
     .section-title {
-      font-size: clamp(1.65rem, 3vw, 2.4rem);
       margin: 0 0 12px;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
       letter-spacing: -0.02em;
     }
 
@@ -248,6 +209,12 @@
       gap: 18px;
     }
 
+    .grid-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
     .card {
       background: var(--card);
       border: 1px solid var(--border);
@@ -257,8 +224,7 @@
     }
 
     .card h3 {
-      margin-top: 0;
-      margin-bottom: 10px;
+      margin: 0 0 10px;
       font-size: 1.08rem;
     }
 
@@ -267,10 +233,25 @@
       color: var(--muted);
     }
 
-    .two-col {
+    .mini-preview {
+      margin-top: 20px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
+      align-items: stretch;
+    }
+
+    .preview-image {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .preview-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .feature-list {
@@ -281,26 +262,51 @@
     .feature-item {
       padding: 16px 18px;
       border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
     }
 
     .feature-item strong {
       display: block;
       margin-bottom: 6px;
+      color: var(--text);
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .step {
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .step-number {
+      width: 34px;
+      height: 34px;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      margin-bottom: 12px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #05111d;
+      font-weight: 800;
     }
 
     .download-box {
       display: grid;
       grid-template-columns: 1.2fr 0.8fr;
       gap: 18px;
-      align-items: stretch;
     }
 
     .price {
       font-size: 2rem;
       font-weight: 800;
-      margin: 6px 0 12px;
+      margin: 8px 0 12px;
     }
 
     .small {
@@ -309,16 +315,16 @@
     }
 
     .notice {
-      border-left: 4px solid var(--danger);
+      margin-top: 16px;
       padding: 14px 16px;
-      background: rgba(255,107,107,0.1);
+      border-left: 4px solid #ff7d7d;
       border-radius: 12px;
+      background: rgba(255,125,125,0.10);
       color: var(--text);
-      margin-top: 14px;
     }
 
     footer {
-      padding: 34px 0 56px;
+      padding: 36px 0 56px;
       color: var(--muted);
       font-size: 0.94rem;
     }
@@ -326,38 +332,36 @@
     .footer-grid {
       display: flex;
       justify-content: space-between;
-      gap: 16px;
+      gap: 18px;
       flex-wrap: wrap;
       padding-top: 18px;
-      border-top: 1px solid rgba(255,255,255,0.08);
+      border-top: 1px solid rgba(255,255,255,0.07);
     }
 
-    @media (max-width: 960px) {
+    @media (max-width: 980px) {
       .hero-grid,
       .grid-3,
-      .two-col,
-      .download-box {
+      .grid-2,
+      .mini-preview,
+      .download-box,
+      .steps {
         grid-template-columns: 1fr;
       }
 
       .nav {
+        flex-direction: column;
         align-items: flex-start;
         padding: 14px 0;
-        flex-direction: column;
       }
     }
 
     @media (max-width: 640px) {
-      .status-bar {
-        grid-template-columns: 1fr;
+      .button {
+        width: 100%;
       }
 
       .hero {
-        padding-top: 44px;
-      }
-
-      .button {
-        width: 100%;
+        padding-top: 42px;
       }
     }
   </style>
@@ -365,13 +369,15 @@
 <body>
   <header>
     <div class="container nav">
-      <div class="brand">
-        <div class="logo">MG</div>
+      <a class="brand" href="#">
+        <img src="favicon.png" alt="MindGuard Logo">
         <span>MindGuard</span>
-      </div>
+      </a>
+
       <nav class="nav-links">
         <a href="#funktionen">Funktionen</a>
-        <a href="#vorteile">Vorteile</a>
+        <a href="#einblick">Einblick</a>
+        <a href="#ablauf">Ablauf</a>
         <a href="#download">Download</a>
         <a href="#datenschutz">Datenschutz</a>
         <a href="#kontakt">Kontakt</a>
@@ -388,31 +394,19 @@
           <p class="lead">
             MindGuard ist eine Desktop-Anwendung, die mögliche Ablenkung und Inaktivität am Bildschirmarbeitsplatz erkennt und bei längerer Ablenkung dezente visuelle oder akustische Warnsignale ausgeben kann.
           </p>
+
           <div class="cta-row">
             <a class="button button-primary" href="#download">Download ansehen</a>
-            <a class="button button-secondary" href="#funktionen">Mehr erfahren</a>
+            <a class="button button-secondary" href="#einblick">Mehr erfahren</a>
           </div>
+
           <p class="hero-note">
             Fokus auf macOS · später ausbaubar für Windows und Linux · lokale Analyse ohne dauerhafte Speicherung von Videodaten
           </p>
         </div>
 
-        <div class="hero-card">
-          <div class="screen">
-            <div class="screen-top">
-              <span class="dot"></span>
-              <span class="dot"></span>
-              <span class="dot"></span>
-            </div>
-            <div class="screen-body">
-              <div class="camera-box">🎯</div>
-              <div class="status-bar">
-                <div class="status-pill">Kamera aktiv</div>
-                <div class="status-pill">Fokusmodus bereit</div>
-                <div class="status-pill">Warnung dezent</div>
-              </div>
-            </div>
-          </div>
+        <div class="hero-visual">
+          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige">
         </div>
       </div>
     </section>
@@ -423,25 +417,97 @@
         <p class="section-intro">
           MindGuard setzt nicht auf harte Sperren, sondern auf subtile Rückmeldungen. Die Anwendung analysiert die Aufmerksamkeit lokal über die Kamera und erinnert bei anhaltender Ablenkung daran, den Fokus wieder auf die eigentliche Aufgabe zu richten.
         </p>
+
         <div class="grid-3">
           <article class="card">
-            <h3>Ablenkung erkennen</h3>
-            <p>Die App analysiert Gesichtslandmarks und erkennt, wenn der Blick über längere Zeit vom Bildschirm abweicht.</p>
+            <h3>Gesichterkennung</h3>
+            <p>Die App analysiert Gesichtsmerkmale in Echtzeit, um Hinweise auf Blickrichtung und Aufmerksamkeit zu erkennen.</p>
           </article>
+
           <article class="card">
-            <h3>Dezent warnen</h3>
-            <p>Statt Inhalte zu blockieren, arbeitet MindGuard mit visuellen oder akustischen Warnsignalen.</p>
+            <h3>Dezente Warnungen</h3>
+            <p>Bei längerer Ablenkung kann MindGuard visuelle oder akustische Warnsignale ausgeben, ohne sofort Inhalte zu blockieren.</p>
           </article>
+
           <article class="card">
-            <h3>Individuell anpassen</h3>
-            <p>Wichtige Parameter wie Empfindlichkeit, Frames bis Warnung und Frames pro Sekunde sind einstellbar.</p>
+            <h3>Individuell anpassbar</h3>
+            <p>Empfindlichkeit, Frames bis Warnung und weitere Parameter lassen sich an verschiedene Arbeitsweisen anpassen.</p>
           </article>
         </div>
       </div>
     </section>
 
-    <section id="vorteile">
-      <div class="container two-col">
+    <section id="einblick">
+      <div class="container">
+        <h2 class="section-title">Kleiner Einblick in die Erkennung</h2>
+        <p class="section-intro">
+          Die folgende Vorschau zeigt beispielhaft, wie eine spätere Web- oder App-Darstellung aussehen könnte. Dabei ist gut sichtbar, dass der Fokus auf lokaler Analyse, Gesichtslandmarks und einem übersichtlichen Statusbereich liegt.
+        </p>
+
+        <div class="mini-preview">
+          <div class="preview-image card">
+            <img src="hero-preview.png" alt="MindGuard Vorschau mit Gesichtserkennung">
+          </div>
+
+          <div class="card">
+            <div class="feature-list">
+              <div class="feature-item">
+                <strong>Kamera aktiv</strong>
+                Die Analyse startet lokal auf dem Gerät und verarbeitet das Kamerabild in Echtzeit.
+              </div>
+
+              <div class="feature-item">
+                <strong>Gesicht und Blick</strong>
+                Markante Gesichtspunkte können genutzt werden, um Hinweise auf Fokus oder Ablenkung zu erkennen.
+              </div>
+
+              <div class="feature-item">
+                <strong>Status und Einstellungen</strong>
+                Fokuswert, Inaktivität und Empfindlichkeit können übersichtlich dargestellt und angepasst werden.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="ablauf">
+      <div class="container">
+        <h2 class="section-title">So funktioniert MindGuard</h2>
+        <p class="section-intro">
+          Die Grundidee ist einfach: Die Anwendung startet die Kamera, erkennt Gesicht und Blickverhalten, bewertet mögliche Ablenkung und gibt bei Bedarf eine dezente Warnung aus.
+        </p>
+
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Kamera aktivieren</h3>
+            <p>Lokale Videoanalyse startet auf dem Gerät.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Gesicht erkennen</h3>
+            <p>Gesichtslandmarks und Hinweise auf Blickrichtung werden erfasst.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>Ablenkung bewerten</h3>
+            <p>Kurze Bewegungen werden toleriert, anhaltende Ablenkung wird erkannt.</p>
+          </div>
+
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Dezent warnen</h3>
+            <p>Visuelle oder akustische Signale helfen, den Fokus zurückzugewinnen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="container grid-2">
         <div class="card">
           <h2 class="section-title">Vorteile</h2>
           <div class="feature-list">
@@ -449,13 +515,15 @@
               <strong>Lokale Analyse</strong>
               Keine dauerhafte Speicherung oder Weitergabe von Videodaten.
             </div>
+
             <div class="feature-item">
               <strong>Dezente Nutzung</strong>
-              Ideal für Lern- und Arbeitsumgebungen, in denen keine aggressive Blockierung gewünscht ist.
+              Gut geeignet für Lern- und Arbeitsumgebungen, in denen keine aggressive Blockierung gewünscht ist.
             </div>
+
             <div class="feature-item">
               <strong>Flexible Einstellungen</strong>
-              Kann an verschiedene Kamerapositionen, Arbeitsweisen und Bedürfnisse angepasst werden.
+              Kann an verschiedene Kamerapositionen, Umgebungen und Arbeitsweisen angepasst werden.
             </div>
           </div>
         </div>
@@ -465,15 +533,17 @@
           <div class="feature-list">
             <div class="feature-item">
               <strong>Studierende</strong>
-              Für fokussierteres Lernen am Laptop oder externen Bildschirm.
+              Für konzentrierteres Lernen am Laptop oder externen Bildschirm.
             </div>
+
             <div class="feature-item">
               <strong>Berufstätige</strong>
-              Für mehr Konzentration im Büro oder Homeoffice.
+              Für mehr Fokus im Büro oder Homeoffice.
             </div>
+
             <div class="feature-item">
               <strong>Spätere Weiterentwicklung</strong>
-              Grundlage für Lizenzierung, Benutzerstudie, Website und Download-Verteilung.
+              Gute Grundlage für Benutzerstudie, Lizenzierung, Website und Verteilung.
             </div>
           </div>
         </div>
@@ -487,11 +557,14 @@
           <p class="section-intro">
             Diese Seite ist aktuell eine Test-Webseite. Später kann hier die veröffentlichte Version von MindGuard für macOS bereitgestellt werden.
           </p>
+
           <div class="cta-row">
             <a class="button button-primary" href="#">Testversion herunterladen</a>
             <a class="button button-secondary" href="#">Lizenz kaufen</a>
           </div>
+
           <p class="small">Geplante Verteilung: Website + Download-Link + optionale Lizenzaktivierung</p>
+
           <div class="notice">
             Hinweis: Die Download- und Kauf-Buttons sind in dieser Testversion noch Platzhalter.
           </div>
@@ -501,11 +574,15 @@
           <h3>Geplantes Modell</h3>
           <div class="price">ab CHF 9</div>
           <p class="small">Beispielpreis für eine spätere Einzellizenz</p>
-          <hr style="border: 0; border-top: 1px solid rgba(255,255,255,0.08); margin: 18px 0;">
+
+          <hr style="border:0; border-top:1px solid rgba(255,255,255,0.08); margin:18px 0;">
+
           <p class="small">Version</p>
           <p>MindGuard 1.0 Test</p>
+
           <p class="small">Plattform</p>
           <p>macOS</p>
+
           <p class="small">Status</p>
           <p>Prototyp / Bachelorarbeit</p>
         </div>
@@ -530,6 +607,7 @@
         <strong>MindGuard</strong><br>
         Test-Webseite für die Bachelorarbeit
       </div>
+
       <div>
         Kontakt: daniel.bucher@example.com<br>
         Ort: Schweiz

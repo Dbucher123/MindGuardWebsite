@@ -148,7 +148,8 @@
       border-radius: 14px;
       font-weight: 700;
       border: 1px solid transparent;
-      transition: transform 0.18s ease, opacity 0.18s ease;
+      transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+      position: relative;
     }
 
     .button:hover {
@@ -156,7 +157,7 @@
       opacity: 0.96;
     }
 
-    .button-primary {
+    .button-download {
       background: linear-gradient(135deg, var(--accent), var(--accent-2));
       color: #06111f;
       box-shadow: var(--shadow);
@@ -168,15 +169,39 @@
       color: var(--text);
     }
 
-    .button-outline {
-      background: rgba(255,255,255,0.02);
-      border-color: rgba(112,240,200,0.35);
-      color: var(--text);
+    .button-recommended {
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.22),
+        0 0 26px rgba(69,185,255,0.45),
+        0 18px 40px rgba(0,0,0,0.30);
+      border-color: rgba(255,255,255,0.35);
+      transform: translateY(-1px);
+    }
+
+    .button-recommended::after {
+      content: "Empfohlen";
+      position: absolute;
+      top: -11px;
+      right: 12px;
+      padding: 4px 10px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 800;
+      background: #f4f7fb;
+      color: #06111f;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.22);
     }
 
     .hero-note {
       color: var(--muted);
       font-size: 0.93rem;
+    }
+
+    .arch-hint {
+      margin-top: 10px;
+      color: #d9f4ff;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
     .hero-visual {
@@ -415,14 +440,30 @@
           </p>
 
           <div class="cta-row">
-            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">Download für macOS Intel</a>
-            <a class="button button-outline" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/3/MindGuard-arm-build.zip">Download für macOS Apple Silicon</a>
+            <a
+              id="download-intel-top"
+              class="button button-download"
+              href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip"
+            >
+              Download für macOS Intel
+            </a>
+
+            <a
+              id="download-arm-top"
+              class="button button-download"
+              href="https://github.com/Dbucher123/MindGuardRelease/releases/download/3/MindGuard-arm-build.zip"
+            >
+              Download für macOS Apple Silicon
+            </a>
+
             <a class="button button-secondary" href="#einblick">Mehr erfahren</a>
           </div>
 
           <p class="hero-note">
             Separate Versionen für Intel Macs und Apple Silicon Macs · lokale Analyse ohne dauerhafte Speicherung von Videodaten
           </p>
+
+          <p id="arch-hint-top" class="arch-hint"></p>
         </div>
 
         <div class="hero-visual">
@@ -579,15 +620,30 @@
           </p>
 
           <div class="cta-row">
-            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">MindGuard für macOS Intel herunterladen</a>
-            <a class="button button-outline" href="DEIN-ARM-DOWNLOAD-LINK-HIER">MindGuard für macOS Apple Silicon herunterladen</a>
+            <a
+              id="download-intel-bottom"
+              class="button button-download"
+              href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip"
+            >
+              MindGuard für macOS Intel herunterladen
+            </a>
+
+            <a
+              id="download-arm-bottom"
+              class="button button-download"
+              href="https://github.com/Dbucher123/MindGuardRelease/releases/download/3/MindGuard-arm-build.zip"
+            >
+              MindGuard für macOS Apple Silicon herunterladen
+            </a>
+
             <a class="button button-secondary" href="#">Lizenz kaufen</a>
           </div>
 
           <p class="small">Geplante Verteilung: Website + Download-Link + optionale Lizenzaktivierung</p>
+          <p id="arch-hint-download" class="arch-hint"></p>
 
           <div class="notice">
-            Hinweis: Der Intel-Button ist bereits mit deinem bestehenden GitHub-Release verknüpft. Beim Apple-Silicon-Button musst du nur noch den finalen ARM-Link einsetzen.
+            Hinweis: Die passende Version wird wenn möglich automatisch markiert. Falls die Erkennung nicht eindeutig ist, kannst du die richtige Version manuell wählen.
           </div>
 
           <div class="info-box">
@@ -600,7 +656,7 @@
           <div class="price">ab CHF 9</div>
           <p class="small">Beispielpreis für eine spätere Einzellizenz</p>
 
-          <hr style="border:0; border-top:1px solid rgba(255,255,255,0.08); margin:18px 0;">
+          <hr style="border:0; border-top:1px solid rgba(255,255,255,0.08); margin:18px 0">
 
           <p class="small">Version</p>
           <p>MindGuard 1.0 Test</p>
@@ -639,5 +695,65 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const archHintTop = document.getElementById("arch-hint-top")
+    const archHintDownload = document.getElementById("arch-hint-download")
+
+    const intelButtons = [
+      document.getElementById("download-intel-top"),
+      document.getElementById("download-intel-bottom")
+    ]
+
+    const armButtons = [
+      document.getElementById("download-arm-top"),
+      document.getElementById("download-arm-bottom")
+    ]
+
+    function setHint(text) {
+      archHintTop.textContent = text
+      archHintDownload.textContent = text
+    }
+
+    function markRecommended(buttons) {
+      buttons.forEach(button => {
+        if (button) {
+          button.classList.add("button-recommended")
+        }
+      })
+    }
+
+    async function detectMacArchitecture() {
+      try {
+        if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+          const data = await navigator.userAgentData.getHighEntropyValues(["architecture", "platform"])
+
+          if (data.platform === "macOS") {
+            if (data.architecture === "x86") {
+              markRecommended(intelButtons)
+              setHint("Empfohlene Version für deinen Mac: macOS Intel")
+              return
+            }
+
+            if (data.architecture === "arm") {
+              markRecommended(armButtons)
+              setHint("Empfohlene Version für deinen Mac: macOS Apple Silicon")
+              return
+            }
+          }
+        }
+      } catch (error) {
+      }
+
+      if (navigator.platform === "MacIntel") {
+        markRecommended(intelButtons)
+        setHint("Hinweis: Dein Browser meldet MacIntel. Das ist oft Intel, auf neueren Macs kann die Erkennung aber ungenau sein.")
+      } else {
+        setHint("Wähle bitte die passende Version manuell: Intel für ältere Macs, Apple Silicon für M1, M2, M3 oder M4.")
+      }
+    }
+
+    detectMacArchitecture()
+  </script>
 </body>
 </html>

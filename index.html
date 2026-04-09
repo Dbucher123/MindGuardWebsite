@@ -168,6 +168,12 @@
       color: var(--text);
     }
 
+    .button-outline {
+      background: rgba(255,255,255,0.02);
+      border-color: rgba(112,240,200,0.35);
+      color: var(--text);
+    }
+
     .hero-note {
       color: var(--muted);
       font-size: 0.93rem;
@@ -323,6 +329,19 @@
       color: var(--text);
     }
 
+    .info-box {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-radius: 16px;
+      background: rgba(69,185,255,0.08);
+      border: 1px solid rgba(69,185,255,0.20);
+    }
+
+    .info-box p {
+      margin: 0;
+      color: var(--text);
+    }
+
     footer {
       padding: 36px 0 56px;
       color: var(--muted);
@@ -396,12 +415,13 @@
           </p>
 
           <div class="cta-row">
-            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">Download für macOS</a>
+            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">Download für macOS Intel</a>
+            <a class="button button-outline" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/3/MindGuard-arm-build.zip">Download für macOS Apple Silicon</a>
             <a class="button button-secondary" href="#einblick">Mehr erfahren</a>
           </div>
 
           <p class="hero-note">
-            Fokus auf macOS · später ausbaubar für Windows und Linux · lokale Analyse ohne dauerhafte Speicherung von Videodaten
+            Separate Versionen für Intel Macs und Apple Silicon Macs · lokale Analyse ohne dauerhafte Speicherung von Videodaten
           </p>
         </div>
 
@@ -555,18 +575,23 @@
         <div class="card">
           <h2 class="section-title">Download</h2>
           <p class="section-intro">
-            Diese Seite ist aktuell eine Test-Webseite. Später kann hier die veröffentlichte Version von MindGuard für macOS bereitgestellt werden.
+            Diese Seite ist aktuell eine Test-Webseite. Hier können bereits separate Downloads für macOS Intel und macOS Apple Silicon bereitgestellt werden.
           </p>
 
           <div class="cta-row">
-            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">MindGuard für macOS herunterladen</a>
+            <a class="button button-primary" href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip">MindGuard für macOS Intel herunterladen</a>
+            <a class="button button-outline" href="DEIN-ARM-DOWNLOAD-LINK-HIER">MindGuard für macOS Apple Silicon herunterladen</a>
             <a class="button button-secondary" href="#">Lizenz kaufen</a>
           </div>
 
           <p class="small">Geplante Verteilung: Website + Download-Link + optionale Lizenzaktivierung</p>
 
           <div class="notice">
-            Hinweis: Der Download-Button ist bereits mit deinem GitHub-Release verknüpft. Den Kaufen-Button kannst du später mit Lemon Squeezy verlinken.
+            Hinweis: Der Intel-Button ist bereits mit deinem bestehenden GitHub-Release verknüpft. Beim Apple-Silicon-Button musst du nur noch den finalen ARM-Link einsetzen.
+          </div>
+
+          <div class="info-box">
+            <p><strong>Welche Version brauche ich?</strong><br>Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.</p>
           </div>
         </div>
 
@@ -581,7 +606,7 @@
           <p>MindGuard 1.0 Test</p>
 
           <p class="small">Plattform</p>
-          <p>macOS</p>
+          <p>macOS Intel und macOS Apple Silicon</p>
 
           <p class="small">Status</p>
           <p>Prototyp / Bachelorarbeit</p>

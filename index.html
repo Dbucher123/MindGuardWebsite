@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MindGuard | Überwache und schütze deine Achtsamkeit</title>
+  <title>MindGuard | Fokus und Achtsamkeit am Bildschirm</title>
   <link rel="icon" type="image/png" href="favicon.png" />
   <style>
     :root {
@@ -15,8 +15,10 @@
       --muted: #b8c2d6;
       --accent: #45b9ff;
       --accent-2: #70f0c8;
+      --pro: #ffd166;
+      --pro-2: #ff9f6e;
       --border: rgba(255,255,255,0.1);
-      --shadow: 0 18px 40px rgba(0,0,0,0.30);
+      --shadow: 0 18px 40px rgba(0,0,0,0.28);
       --radius: 22px;
       --max: 1180px;
     }
@@ -35,8 +37,8 @@
       color: var(--text);
       line-height: 1.6;
       background:
-        radial-gradient(circle at top left, rgba(69,185,255,0.15), transparent 25%),
-        radial-gradient(circle at top right, rgba(112,240,200,0.12), transparent 20%),
+        radial-gradient(circle at top left, rgba(69,185,255,0.14), transparent 25%),
+        radial-gradient(circle at top right, rgba(112,240,200,0.10), transparent 22%),
         linear-gradient(180deg, #060c18 0%, #0b1424 100%);
     }
 
@@ -60,7 +62,7 @@
       top: 0;
       z-index: 100;
       backdrop-filter: blur(14px);
-      background: rgba(7, 11, 20, 0.72);
+      background: rgba(7, 11, 20, 0.74);
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
 
@@ -95,8 +97,21 @@
       font-size: 0.95rem;
     }
 
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    .nav-pro {
+      padding: 9px 14px;
+      border-radius: 999px;
+      color: #06111f;
+      font-weight: 800;
+      background: linear-gradient(135deg, var(--pro), var(--pro-2));
+      box-shadow: 0 12px 30px rgba(255,159,110,0.18);
+    }
+
     .hero {
-      padding: 68px 0 38px;
+      padding: 68px 0 42px;
     }
 
     .hero-grid {
@@ -121,15 +136,15 @@
 
     h1 {
       margin: 0 0 18px;
-      font-size: clamp(2.3rem, 5vw, 4.4rem);
-      line-height: 1.02;
+      font-size: clamp(2.3rem, 5vw, 4.35rem);
+      line-height: 1.03;
       letter-spacing: -0.03em;
     }
 
     .lead {
       color: var(--muted);
       font-size: 1.08rem;
-      max-width: 60ch;
+      max-width: 62ch;
       margin-bottom: 24px;
     }
 
@@ -146,7 +161,7 @@
       justify-content: center;
       padding: 14px 22px;
       border-radius: 14px;
-      font-weight: 700;
+      font-weight: 800;
       border: 1px solid transparent;
       transition: transform 0.18s ease, opacity 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
       position: relative;
@@ -163,6 +178,15 @@
       box-shadow: var(--shadow);
     }
 
+    .button-pro {
+      background: linear-gradient(135deg, var(--pro), var(--pro-2));
+      color: #06111f;
+      box-shadow:
+        0 0 0 2px rgba(255,255,255,0.14),
+        0 0 24px rgba(255,209,102,0.26),
+        0 16px 36px rgba(0,0,0,0.30);
+    }
+
     .button-secondary {
       background: rgba(255,255,255,0.04);
       border-color: var(--border);
@@ -171,11 +195,10 @@
 
     .button-recommended {
       box-shadow:
-        0 0 0 2px rgba(255,255,255,0.22),
-        0 0 26px rgba(69,185,255,0.45),
+        0 0 0 2px rgba(255,255,255,0.18),
+        0 0 22px rgba(69,185,255,0.35),
         0 18px 40px rgba(0,0,0,0.30);
-      border-color: rgba(255,255,255,0.35);
-      transform: translateY(-1px);
+      border-color: rgba(255,255,255,0.30);
     }
 
     .button-recommended::after {
@@ -185,14 +208,15 @@
       right: 12px;
       padding: 4px 10px;
       border-radius: 999px;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       font-weight: 800;
       background: #f4f7fb;
       color: #06111f;
       box-shadow: 0 10px 25px rgba(0,0,0,0.22);
     }
 
-    .hero-note {
+    .hero-note,
+    .small {
       color: var(--muted);
       font-size: 0.93rem;
     }
@@ -201,7 +225,7 @@
       margin-top: 10px;
       color: #d9f4ff;
       font-size: 0.95rem;
-      font-weight: 600;
+      font-weight: 650;
     }
 
     .hero-visual {
@@ -219,19 +243,19 @@
     }
 
     section {
-      padding: 30px 0;
+      padding: 34px 0;
     }
 
     .section-title {
       margin: 0 0 12px;
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-size: clamp(1.6rem, 3vw, 2.35rem);
       letter-spacing: -0.02em;
     }
 
     .section-intro {
       color: var(--muted);
-      max-width: 70ch;
-      margin-bottom: 24px;
+      max-width: 72ch;
+      margin: 0 0 24px;
     }
 
     .grid-3 {
@@ -256,33 +280,12 @@
 
     .card h3 {
       margin: 0 0 10px;
-      font-size: 1.08rem;
+      font-size: 1.1rem;
     }
 
     .card p {
       margin: 0;
       color: var(--muted);
-    }
-
-    .mini-preview {
-      margin-top: 20px;
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .preview-image {
-      overflow: hidden;
-      border-radius: 20px;
-      border: 1px solid var(--border);
-      background: rgba(255,255,255,0.03);
-    }
-
-    .preview-image img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
     }
 
     .feature-list {
@@ -301,6 +304,26 @@
       display: block;
       margin-bottom: 6px;
       color: var(--text);
+    }
+
+    .mini-preview {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .preview-image {
+      overflow: hidden;
+      border-radius: 20px;
+      border: 1px solid var(--border);
+      background: rgba(255,255,255,0.03);
+    }
+
+    .preview-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .steps {
@@ -330,41 +353,71 @@
 
     .download-box {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.05fr 0.95fr;
       gap: 18px;
-    }
-
-    .price {
-      font-size: 2rem;
-      font-weight: 800;
-      margin: 8px 0 12px;
-    }
-
-    .small {
-      color: var(--muted);
-      font-size: 0.92rem;
+      align-items: start;
     }
 
     .notice {
       margin-top: 16px;
       padding: 14px 16px;
-      border-left: 4px solid #ff7d7d;
+      border-left: 4px solid var(--accent);
       border-radius: 12px;
-      background: rgba(255,125,125,0.10);
+      background: rgba(69,185,255,0.08);
       color: var(--text);
+    }
+
+    .license-box {
+      display: grid;
+      grid-template-columns: 0.9fr 1.1fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .license-card {
+      border-color: rgba(255,209,102,0.34);
+      background:
+        radial-gradient(circle at top left, rgba(255,209,102,0.18), transparent 36%),
+        radial-gradient(circle at bottom right, rgba(255,159,110,0.10), transparent 34%),
+        rgba(255,255,255,0.075);
+    }
+
+    .price {
+      font-size: clamp(2.2rem, 5vw, 3.6rem);
+      line-height: 1;
+      font-weight: 900;
+      margin: 12px 0;
+      letter-spacing: -0.04em;
+    }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 16px 0 20px;
+    }
+
+    .pill {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.92rem;
+      font-weight: 700;
     }
 
     .info-box {
       margin-top: 18px;
       padding: 16px 18px;
       border-radius: 16px;
-      background: rgba(69,185,255,0.08);
-      border: 1px solid rgba(69,185,255,0.20);
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
     }
 
     .info-box p {
       margin: 0;
-      color: var(--text);
+      color: var(--muted);
     }
 
     footer {
@@ -388,7 +441,8 @@
       .grid-2,
       .mini-preview,
       .download-box,
-      .steps {
+      .steps,
+      .license-box {
         grid-template-columns: 1fr;
       }
 
@@ -425,6 +479,7 @@
         <a href="#download">Download</a>
         <a href="#datenschutz">Datenschutz</a>
         <a href="#kontakt">Kontakt</a>
+        <a class="nav-pro" href="#lizenz">Pro kaufen</a>
       </nav>
     </div>
   </header>
@@ -433,10 +488,10 @@
     <section class="hero">
       <div class="container hero-grid">
         <div>
-          <div class="badge">MindGuard · Test-Webseite für die Bachelorarbeit</div>
-          <h1>Überwache und schütze deine Achtsamkeit.</h1>
+          <div class="badge">MindGuard · Desktop-App für Fokus und Achtsamkeit</div>
+          <h1>Bleib fokussiert, ohne harte Sperren.</h1>
           <p class="lead">
-            MindGuard ist eine Desktop-Anwendung, die mögliche Ablenkung und Inaktivität am Bildschirmarbeitsplatz erkennt und bei längerer Ablenkung dezente visuelle oder akustische Warnsignale ausgeben kann.
+            MindGuard erkennt mögliche Ablenkung oder Inaktivität am Bildschirmarbeitsplatz und erinnert dich mit dezenten visuellen oder akustischen Signalen daran, den Fokus zurückzuholen.
           </p>
 
           <div class="cta-row">
@@ -445,7 +500,7 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip"
             >
-              Download für macOS Intel
+              macOS Intel herunterladen
             </a>
 
             <a
@@ -453,14 +508,14 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/4/MindGuardARM3.zip"
             >
-              Download für macOS Apple Silicon
+              Apple Silicon herunterladen
             </a>
 
-            <a class="button button-secondary" href="#einblick">Mehr erfahren</a>
+            <a class="button button-pro buy-link" href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04">Pro Version kaufen</a>
           </div>
 
           <p class="hero-note">
-            Separate Versionen für Intel Macs und Apple Silicon Macs · lokale Analyse ohne dauerhafte Speicherung von Videodaten
+            Gratis nutzbar · Pro-Lizenz optional für zusätzliche Einstellungen · lokale Analyse ohne dauerhafte Speicherung von Videodaten
           </p>
 
           <p id="arch-hint-top" class="arch-hint"></p>
@@ -476,23 +531,23 @@
       <div class="container">
         <h2 class="section-title">Was MindGuard macht</h2>
         <p class="section-intro">
-          MindGuard setzt nicht auf harte Sperren, sondern auf subtile Rückmeldungen. Die Anwendung analysiert die Aufmerksamkeit lokal über die Kamera und erinnert bei anhaltender Ablenkung daran, den Fokus wieder auf die eigentliche Aufgabe zu richten.
+          MindGuard arbeitet im Hintergrund und gibt nur dann eine Rückmeldung, wenn über längere Zeit Hinweise auf Ablenkung entstehen. Die App soll unterstützen, nicht stören.
         </p>
 
         <div class="grid-3">
           <article class="card">
-            <h3>Gesichterkennung</h3>
-            <p>Die App analysiert Gesichtsmerkmale in Echtzeit, um Hinweise auf Blickrichtung und Aufmerksamkeit zu erkennen.</p>
+            <h3>Lokale Erkennung</h3>
+            <p>Die App analysiert Gesichtsmerkmale direkt auf dem Gerät und verarbeitet das Kamerabild lokal.</p>
           </article>
 
           <article class="card">
             <h3>Dezente Warnungen</h3>
-            <p>Bei längerer Ablenkung kann MindGuard visuelle oder akustische Warnsignale ausgeben, ohne sofort Inhalte zu blockieren.</p>
+            <p>Bei längerer Ablenkung kann MindGuard ein visuelles oder akustisches Warnsignal ausgeben.</p>
           </article>
 
           <article class="card">
-            <h3>Individuell anpassbar</h3>
-            <p>Empfindlichkeit, Frames bis Warnung und weitere Parameter lassen sich an verschiedene Arbeitsweisen anpassen.</p>
+            <h3>Anpassbare Parameter</h3>
+            <p>Schwellenwert, Frames bis Warnung und Analysefrequenz können an die eigene Arbeitsweise angepasst werden.</p>
           </article>
         </div>
       </div>
@@ -500,9 +555,9 @@
 
     <section id="einblick">
       <div class="container">
-        <h2 class="section-title">Kleiner Einblick in die Erkennung</h2>
+        <h2 class="section-title">Einblick in die Erkennung</h2>
         <p class="section-intro">
-          Die folgende Vorschau zeigt beispielhaft, wie eine spätere Web- oder App-Darstellung aussehen könnte. Dabei ist gut sichtbar, dass der Fokus auf lokaler Analyse, Gesichtslandmarks und einem übersichtlichen Statusbereich liegt.
+          Die Vorschau zeigt beispielhaft, wie MindGuard Gesichtspunkte erkennt und daraus Hinweise auf Fokus oder Ablenkung ableitet.
         </p>
 
         <div class="mini-preview">
@@ -514,17 +569,17 @@
             <div class="feature-list">
               <div class="feature-item">
                 <strong>Kamera aktiv</strong>
-                Die Analyse startet lokal auf dem Gerät und verarbeitet das Kamerabild in Echtzeit.
+                Die Analyse startet lokal auf dem Gerät.
               </div>
 
               <div class="feature-item">
                 <strong>Gesicht und Blick</strong>
-                Markante Gesichtspunkte können genutzt werden, um Hinweise auf Fokus oder Ablenkung zu erkennen.
+                Gesichtspunkte können genutzt werden, um Hinweise auf Fokus oder Ablenkung zu erkennen.
               </div>
 
               <div class="feature-item">
                 <strong>Status und Einstellungen</strong>
-                Fokuswert, Inaktivität und Empfindlichkeit können übersichtlich dargestellt und angepasst werden.
+                Wichtige Werte und Einstellungen bleiben sichtbar und nachvollziehbar.
               </div>
             </div>
           </div>
@@ -534,34 +589,34 @@
 
     <section id="ablauf">
       <div class="container">
-        <h2 class="section-title">So funktioniert MindGuard</h2>
+        <h2 class="section-title">So funktioniert es</h2>
         <p class="section-intro">
-          Die Grundidee ist einfach: Die Anwendung startet die Kamera, erkennt Gesicht und Blickverhalten, bewertet mögliche Ablenkung und gibt bei Bedarf eine dezente Warnung aus.
+          Die Grundidee ist bewusst einfach gehalten: Kamera starten, Gesicht erkennen, Ablenkung bewerten und bei Bedarf dezent warnen.
         </p>
 
         <div class="steps">
           <div class="step">
             <div class="step-number">1</div>
-            <h3>Kamera aktivieren</h3>
-            <p>Lokale Videoanalyse startet auf dem Gerät.</p>
+            <h3>Kamera starten</h3>
+            <p>Die lokale Analyse beginnt auf dem Gerät.</p>
           </div>
 
           <div class="step">
             <div class="step-number">2</div>
             <h3>Gesicht erkennen</h3>
-            <p>Gesichtslandmarks und Hinweise auf Blickrichtung werden erfasst.</p>
+            <p>Relevante Gesichtspunkte werden ausgewertet.</p>
           </div>
 
           <div class="step">
             <div class="step-number">3</div>
-            <h3>Ablenkung bewerten</h3>
-            <p>Kurze Bewegungen werden toleriert, anhaltende Ablenkung wird erkannt.</p>
+            <h3>Ablenkung prüfen</h3>
+            <p>Kurze Bewegungen werden toleriert.</p>
           </div>
 
           <div class="step">
             <div class="step-number">4</div>
             <h3>Dezent warnen</h3>
-            <p>Visuelle oder akustische Signale helfen, den Fokus zurückzugewinnen.</p>
+            <p>Die App erinnert an den Fokus.</p>
           </div>
         </div>
       </div>
@@ -573,38 +628,38 @@
           <h2 class="section-title">Vorteile</h2>
           <div class="feature-list">
             <div class="feature-item">
-              <strong>Lokale Analyse</strong>
-              Keine dauerhafte Speicherung oder Weitergabe von Videodaten.
+              <strong>Keine harte Blockierung</strong>
+              MindGuard sperrt keine Inhalte, sondern erinnert dezent an den Fokus.
             </div>
 
             <div class="feature-item">
-              <strong>Dezente Nutzung</strong>
-              Gut geeignet für Lern- und Arbeitsumgebungen, in denen keine aggressive Blockierung gewünscht ist.
+              <strong>Datenschutzfreundlicher Ansatz</strong>
+              Die Videoanalyse ist lokal gedacht und speichert keine Videodaten dauerhaft.
             </div>
 
             <div class="feature-item">
-              <strong>Flexible Einstellungen</strong>
-              Kann an verschiedene Kamerapositionen, Umgebungen und Arbeitsweisen angepasst werden.
+              <strong>Für Lernen und Arbeit</strong>
+              Geeignet für Studierende, Homeoffice und konzentriertes Arbeiten am Bildschirm.
             </div>
           </div>
         </div>
 
         <div class="card">
-          <h2 class="section-title">Geeignet für</h2>
+          <h2 class="section-title">Status</h2>
           <div class="feature-list">
             <div class="feature-item">
-              <strong>Studierende</strong>
-              Für konzentrierteres Lernen am Laptop oder externen Bildschirm.
+              <strong>Prototyp</strong>
+              Die App wird im Rahmen der Bachelorarbeit weiterentwickelt.
             </div>
 
             <div class="feature-item">
-              <strong>Berufstätige</strong>
-              Für mehr Fokus im Büro oder Homeoffice.
+              <strong>macOS-Versionen</strong>
+              Es gibt separate Downloads für Intel Macs und Apple Silicon Macs.
             </div>
 
             <div class="feature-item">
-              <strong>Spätere Weiterentwicklung</strong>
-              Gute Grundlage für Benutzerstudie, Lizenzierung, Website und Verteilung.
+              <strong>Lizenzierung geplant</strong>
+              Pro-Funktionen können später über einen Lizenzschlüssel freigeschaltet werden.
             </div>
           </div>
         </div>
@@ -616,7 +671,7 @@
         <div class="card">
           <h2 class="section-title">Download</h2>
           <p class="section-intro">
-            Diese Seite ist aktuell eine Test-Webseite. Hier können bereits separate Downloads für macOS Intel und macOS Apple Silicon bereitgestellt werden.
+            Lade die passende Version für deinen Mac herunter. Die Grundversion kann kostenlos getestet werden.
           </p>
 
           <div class="cta-row">
@@ -625,7 +680,7 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/2/MindGuard.zip"
             >
-              MindGuard für macOS Intel herunterladen
+              macOS Intel herunterladen
             </a>
 
             <a
@@ -633,39 +688,75 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/4/MindGuardARM3.zip"
             >
-              MindGuard für macOS Apple Silicon herunterladen
+              Apple Silicon herunterladen
             </a>
-
-            <a class="button button-secondary" href="#">Lizenz kaufen</a>
           </div>
 
-          <p class="small">Geplante Verteilung: Website + Download-Link + optionale Lizenzaktivierung</p>
           <p id="arch-hint-download" class="arch-hint"></p>
+        </div>
+
+        <div class="card">
+          <h3>Welche Version brauche ich?</h3>
+          <p class="small">
+            Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.
+          </p>
 
           <div class="notice">
-            Hinweis: Die passende Version wird wenn möglich automatisch markiert. Falls die Erkennung nicht eindeutig ist, kannst du die richtige Version manuell wählen.
+            Die passende Version wird wenn möglich automatisch markiert. Falls die Erkennung nicht eindeutig ist, kannst du die richtige Version manuell wählen.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="lizenz">
+      <div class="container license-box">
+        <div class="card license-card">
+          <h2 class="section-title">MindGuard Pro</h2>
+          <p class="section-intro">
+            Die kostenlose Version bleibt nutzbar. Mit Pro werden zusätzliche Komfortfunktionen freigeschaltet.
+          </p>
+
+          <div class="price">CHF 5</div>
+          <p class="small">Einmalzahlung für eine Einzellizenz auf einem Gerät.</p>
+
+          <div class="pill-row">
+            <span class="pill">1 Gerät</span>
+            <span class="pill">Lizenzschlüssel</span>
+            <span class="pill">Pro-Funktionen</span>
           </div>
 
-          <div class="info-box">
-            <p><strong>Welche Version brauche ich?</strong><br>Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.</p>
+          <div class="cta-row">
+            <a class="button button-pro buy-link" href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04">Lizenz kaufen</a>
           </div>
         </div>
 
         <div class="card">
-          <h3>Geplantes Modell</h3>
-          <div class="price">ab CHF 9</div>
-          <p class="small">Beispielpreis für eine spätere Einzellizenz</p>
+          <h3>Was ist enthalten?</h3>
+          <div class="feature-list">
+            <div class="feature-item">
+              <strong>Lautstärke einstellen</strong>
+              Passe die Warnlautstärke an deine Umgebung an.
+            </div>
 
-          <hr style="border:0; border-top:1px solid rgba(255,255,255,0.08); margin:18px 0">
+            <div class="feature-item">
+              <strong>Signalton ändern</strong>
+              Wähle später einen alternativen oder eigenen Signalton.
+            </div>
 
-          <p class="small">Version</p>
-          <p>MindGuard 1.0 Test</p>
+            <div class="feature-item">
+              <strong>Pop-up-Warnung anpassen</strong>
+              Passe Darstellung und Stil der visuellen Warnung an.
+            </div>
 
-          <p class="small">Plattform</p>
-          <p>macOS Intel und macOS Apple Silicon</p>
+            <div class="feature-item">
+              <strong>Design anpassen</strong>
+              Nutze zusätzliche Darstellungsoptionen, zum Beispiel hell oder dunkel.
+            </div>
+          </div>
 
-          <p class="small">Status</p>
-          <p>Prototyp / Bachelorarbeit</p>
+          <div class="info-box">
+            <p><strong>Nach dem Kauf:</strong><br>Du erhältst einen Lizenzschlüssel und gibst ihn in MindGuard unter «Lizenz aktivieren» ein.</p>
+          </div>
         </div>
       </div>
     </section>
@@ -675,7 +766,7 @@
         <div class="card">
           <h2 class="section-title">Datenschutz</h2>
           <p class="section-intro">
-            MindGuard ist so gedacht, dass die Analyse lokal auf dem Gerät erfolgt. Videodaten sollen nicht dauerhaft gespeichert oder an Dritte weitergegeben werden. Gespeichert werden nur notwendige Einstellungen oder später gegebenenfalls Lizenzinformationen.
+            MindGuard ist so gedacht, dass die Analyse lokal auf dem Gerät erfolgt. Videodaten sollen nicht dauerhaft gespeichert oder an Dritte weitergegeben werden. Gespeichert werden nur notwendige Einstellungen und gegebenenfalls Lizenzinformationen.
           </p>
         </div>
       </div>
@@ -686,59 +777,67 @@
     <div class="container footer-grid">
       <div>
         <strong>MindGuard</strong><br>
-        Test-Webseite für die Bachelorarbeit
+        Desktop-App für Fokus und Achtsamkeit
       </div>
 
       <div>
-        Kontakt: daniel.bucher@example.com<br>
-        Ort: Schweiz
+        E-Mail: <a href="mailto:bucherdaniel611@gmail.com">bucherdaniel611@gmail.com</a><br>
+        Schweiz
       </div>
     </div>
   </footer>
 
   <script>
-    const archHintTop = document.getElementById("arch-hint-top")
-    const archHintDownload = document.getElementById("arch-hint-download")
+    const purchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04";
+
+    document.querySelectorAll(".buy-link").forEach(link => {
+      link.href = purchaseUrl;
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    });
+
+    const archHintTop = document.getElementById("arch-hint-top");
+    const archHintDownload = document.getElementById("arch-hint-download");
 
     const intelButtons = [
       document.getElementById("download-intel-top"),
       document.getElementById("download-intel-bottom")
-    ]
+    ];
 
     const armButtons = [
       document.getElementById("download-arm-top"),
       document.getElementById("download-arm-bottom")
-    ]
+    ];
 
     function setHint(text) {
-      archHintTop.textContent = text
-      archHintDownload.textContent = text
+      archHintTop.textContent = text;
+      archHintDownload.textContent = text;
     }
 
     function markRecommended(buttons) {
       buttons.forEach(button => {
         if (button) {
-          button.classList.add("button-recommended")
+          button.classList.add("button-recommended");
         }
-      })
+      });
     }
 
     async function detectMacArchitecture() {
       try {
         if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
-          const data = await navigator.userAgentData.getHighEntropyValues(["architecture", "platform"])
+          const data = await navigator.userAgentData.getHighEntropyValues(["architecture", "platform"]);
 
           if (data.platform === "macOS") {
             if (data.architecture === "x86") {
-              markRecommended(intelButtons)
-              setHint("Empfohlene Version für deinen Mac: macOS Intel")
-              return
+              markRecommended(intelButtons);
+              setHint("Empfohlene Version für deinen Mac: macOS Intel");
+              return;
             }
 
             if (data.architecture === "arm") {
-              markRecommended(armButtons)
-              setHint("Empfohlene Version für deinen Mac: macOS Apple Silicon")
-              return
+              markRecommended(armButtons);
+              setHint("Empfohlene Version für deinen Mac: macOS Apple Silicon");
+              return;
             }
           }
         }
@@ -746,14 +845,14 @@
       }
 
       if (navigator.platform === "MacIntel") {
-        markRecommended(intelButtons)
-        setHint("Hinweis: Dein Browser meldet MacIntel. Das ist oft Intel, auf neueren Macs kann die Erkennung aber ungenau sein.")
+        markRecommended(intelButtons);
+        setHint("Hinweis: Dein Browser meldet MacIntel. Das ist oft Intel, auf neueren Macs kann die Erkennung aber ungenau sein.");
       } else {
-        setHint("Wähle bitte die passende Version manuell: Intel für ältere Macs, Apple Silicon für M1, M2, M3 oder M4.")
+        setHint("Wähle bitte die passende Version manuell: Intel für ältere Macs, Apple Silicon für M1, M2, M3 oder M4.");
       }
     }
 
-    detectMacArchitecture()
+    detectMacArchitecture();
   </script>
 </body>
 </html>

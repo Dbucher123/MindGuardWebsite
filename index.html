@@ -511,7 +511,15 @@
               Apple Silicon herunterladen
             </a>
 
-            <a class="button button-pro buy-link" href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04">Pro Version kaufen</a>
+            <a
+              id="buy-test-top"
+              class="button button-pro"
+              href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Pro Version kaufen
+            </a>
           </div>
 
           <p class="hero-note">
@@ -726,7 +734,15 @@
           </div>
 
           <div class="cta-row">
-            <a class="button button-pro buy-link" href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04">Lizenz kaufen</a>
+            <a
+              id="buy-license-bottom"
+              class="button button-pro"
+              href="https://mindguardswiss.lemonsqueezy.com/checkout/buy/fd1426fa-b5e9-4ef0-96f0-2c418648e32b"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Lizenz kaufen
+            </a>
           </div>
         </div>
 
@@ -788,13 +804,23 @@
   </footer>
 
   <script>
-    const purchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04";
+    const testPurchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04";
+    const licensePurchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/fd1426fa-b5e9-4ef0-96f0-2c418648e32b";
 
-    document.querySelectorAll(".buy-link").forEach(link => {
-      link.href = purchaseUrl;
-      link.target = "_blank";
-      link.rel = "noopener noreferrer";
-    });
+    const buyTestTop = document.getElementById("buy-test-top");
+    const buyLicenseBottom = document.getElementById("buy-license-bottom");
+
+    if (buyTestTop) {
+      buyTestTop.href = testPurchaseUrl;
+      buyTestTop.target = "_blank";
+      buyTestTop.rel = "noopener noreferrer";
+    }
+
+    if (buyLicenseBottom) {
+      buyLicenseBottom.href = licensePurchaseUrl;
+      buyLicenseBottom.target = "_blank";
+      buyLicenseBottom.rel = "noopener noreferrer";
+    }
 
     const archHintTop = document.getElementById("arch-hint-top");
     const archHintDownload = document.getElementById("arch-hint-download");

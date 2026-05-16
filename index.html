@@ -70,6 +70,33 @@
       display: block;
     }
 
+    /* Sichtbarer Fokus fuer Tastatur-Navigation (Barrierefreiheit) */
+    a:focus-visible,
+    button:focus-visible,
+    .button:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: 3px;
+      border-radius: 8px;
+    }
+
+    /* Sprunglink: erscheint nur bei Tastatur-Fokus */
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -120px;
+      z-index: 200;
+      padding: 10px 16px;
+      border-radius: 10px;
+      background: var(--text);
+      color: #06111f;
+      font-weight: 800;
+      transition: top 0.18s ease;
+    }
+
+    .skip-link:focus {
+      top: 12px;
+    }
+
     .container {
       width: min(var(--max), calc(100% - 32px));
       margin: 0 auto;
@@ -79,6 +106,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
+      -webkit-backdrop-filter: blur(14px);
       backdrop-filter: blur(14px);
       background: rgba(7, 11, 20, 0.74);
       border-bottom: 1px solid rgba(255,255,255,0.07);
@@ -104,6 +132,20 @@
       width: 38px;
       height: 38px;
       border-radius: 10px;
+    }
+
+    .nav-toggle {
+      display: none;
+      place-items: center;
+      width: 46px;
+      height: 46px;
+      border-radius: 12px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.35rem;
+      line-height: 1;
+      cursor: pointer;
     }
 
     .nav-links {
@@ -453,6 +495,10 @@
       border-top: 1px solid rgba(255,255,255,0.07);
     }
 
+    .footer-grid a:hover {
+      color: var(--text);
+    }
+
     @media (max-width: 980px) {
       .hero-grid,
       .grid-3,
@@ -465,9 +511,26 @@
       }
 
       .nav {
+        flex-wrap: wrap;
+        padding: 14px 0;
+      }
+
+      .nav-toggle {
+        display: grid;
+      }
+
+      .nav-links {
+        display: none;
+        order: 3;
+        width: 100%;
         flex-direction: column;
         align-items: flex-start;
-        padding: 14px 0;
+        gap: 14px;
+        padding-top: 10px;
+      }
+
+      .nav-links.open {
+        display: flex;
       }
     }
 
@@ -480,9 +543,22 @@
         padding-top: 42px;
       }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      .button,
+      .skip-link {
+        transition: none;
+      }
+    }
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+
   <header>
     <div class="container nav">
       <a class="brand" href="#">
@@ -490,19 +566,29 @@
         <span>MindGuard</span>
       </a>
 
-      <nav class="nav-links">
+      <button
+        id="nav-toggle"
+        class="nav-toggle"
+        type="button"
+        aria-label="Menü öffnen"
+        aria-expanded="false"
+        aria-controls="nav-links"
+      >☰</button>
+
+      <nav id="nav-links" class="nav-links" aria-label="Hauptnavigation">
         <a href="#funktionen">Funktionen</a>
         <a href="#einblick">Einblick</a>
         <a href="#ablauf">Ablauf</a>
         <a href="#download">Download</a>
         <a href="#datenschutz">Datenschutz</a>
+        <a href="#impressum">Impressum</a>
         <a href="#kontakt">Kontakt</a>
         <a class="nav-pro" href="#lizenz">Pro kaufen</a>
       </nav>
     </div>
   </header>
 
-  <main>
+  <main id="inhalt">
     <section class="hero">
       <div class="container hero-grid">
         <div>
@@ -518,7 +604,7 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/6/MindGuard.zip"
             >
-              macOS Intel herunterladen
+              Apple Intel herunterladen
             </a>
 
             <a
@@ -548,7 +634,7 @@
         </div>
 
         <div class="hero-visual">
-          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige" decoding="async">
+          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige" fetchpriority="high" decoding="async">
         </div>
       </div>
     </section>
@@ -573,7 +659,7 @@
 
           <article class="card">
             <h3>Anpassbare Parameter</h3>
-            <p>Schwellenwert, Frames bis Warnung und Analysefrequenz können an die eigene Arbeitsweise angepasst werden.</p>
+            <p>Empfindlichkeit, die Dauer bis zu einer Warnung und die Analysefrequenz lassen sich an die eigene Arbeitsweise anpassen.</p>
           </article>
         </div>
       </div>
@@ -685,7 +771,7 @@
 
             <div class="feature-item">
               <strong>Datenschutzfreundlicher Ansatz</strong>
-              Die Videoanalyse ist lokal gedacht und speichert keine Videodaten dauerhaft.
+              Die Videoanalyse läuft lokal und speichert keine Videodaten dauerhaft.
             </div>
 
             <div class="feature-item">
@@ -705,7 +791,7 @@
 
             <div class="feature-item">
               <strong>macOS-Versionen</strong>
-              Es gibt separate Downloads für Intel Macs und Apple Silicon Macs.
+              Es gibt separate Downloads für Apple Intel und Apple Silicon.
             </div>
 
             <div class="feature-item">
@@ -731,7 +817,7 @@
               class="button button-download"
               href="https://github.com/Dbucher123/MindGuardRelease/releases/download/6/MindGuard.zip"
             >
-              macOS Intel herunterladen
+              Apple Intel herunterladen
             </a>
 
             <a
@@ -749,7 +835,7 @@
         <div class="card">
           <h3>Welche Version brauche ich?</h3>
           <p class="small">
-            Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.
+            Apple Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.
           </p>
 
           <div class="notice">
@@ -825,8 +911,36 @@
         <div class="card">
           <h2 class="section-title">Datenschutz</h2>
           <p class="section-intro">
-            MindGuard ist so gedacht, dass die Analyse lokal auf dem Gerät erfolgt. Videodaten sollen nicht dauerhaft gespeichert oder an Dritte weitergegeben werden. Gespeichert werden nur notwendige Einstellungen und gegebenenfalls Lizenzinformationen.
+            Die Bildanalyse von MindGuard läuft vollständig lokal auf deinem Mac. Das Kamerabild wird nur im Arbeitsspeicher ausgewertet und nicht dauerhaft gespeichert, nicht hochgeladen und nicht an Dritte weitergegeben. Auf dem Gerät gespeichert werden ausschliesslich deine Einstellungen sowie – falls vorhanden – deine Lizenzinformationen. Es werden keine Konten angelegt und keine Nutzungsprofile erstellt.
           </p>
+          <p class="small">
+            Beim Kauf einer Pro-Lizenz wird die Zahlung über den Anbieter Lemon Squeezy abgewickelt. Dabei gelten dessen Datenschutzbestimmungen.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="impressum">
+      <div class="container">
+        <div class="card">
+          <h2 class="section-title">Impressum</h2>
+          <p class="section-intro">
+            Verantwortlich für den Inhalt dieser Website:
+          </p>
+          <!--
+            HINWEIS: Bitte die Platzhalter unten durch die echten Angaben ersetzen.
+            Für eine kommerzielle Schweizer Website (Verkauf) werden in der Regel
+            Name, vollständige Adresse und eine Kontaktmöglichkeit erwartet.
+          -->
+          <div class="info-box">
+            <p>
+              <strong>[Vor- und Nachname]</strong><br>
+              [Strasse und Hausnummer]<br>
+              [PLZ und Ort]<br>
+              Schweiz<br><br>
+              E-Mail: <a href="mailto:bucherdaniel611@gmail.com">bucherdaniel611@gmail.com</a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -843,28 +957,37 @@
         E-Mail: <a href="mailto:bucherdaniel611@gmail.com">bucherdaniel611@gmail.com</a><br>
         Schweiz
       </div>
+
+      <div>
+        <a href="#datenschutz">Datenschutz</a><br>
+        <a href="#impressum">Impressum</a>
+      </div>
     </div>
   </footer>
 
   <script>
-    const testPurchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/0c9c4f34-3def-402c-a039-f9ed719a7f04";
-    const licensePurchaseUrl = "https://mindguardswiss.lemonsqueezy.com/checkout/buy/fd1426fa-b5e9-4ef0-96f0-2c418648e32b";
+    // --- Mobiles Navigationsmenue ---
+    const navToggle = document.getElementById("nav-toggle");
+    const navLinks = document.getElementById("nav-links");
 
-    const buyTestTop = document.getElementById("buy-test-top");
-    const buyLicenseBottom = document.getElementById("buy-license-bottom");
+    if (navToggle && navLinks) {
+      navToggle.addEventListener("click", () => {
+        const isOpen = navLinks.classList.toggle("open");
+        navToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
+        navToggle.setAttribute("aria-label", isOpen ? "Menü schliessen" : "Menü öffnen");
+      });
 
-    if (buyTestTop) {
-      buyTestTop.href = testPurchaseUrl;
-      buyTestTop.target = "_blank";
-      buyTestTop.rel = "noopener noreferrer";
+      // Menue schliessen, sobald ein Link angeklickt wird
+      navLinks.addEventListener("click", (event) => {
+        if (event.target.closest("a")) {
+          navLinks.classList.remove("open");
+          navToggle.setAttribute("aria-expanded", "false");
+          navToggle.setAttribute("aria-label", "Menü öffnen");
+        }
+      });
     }
 
-    if (buyLicenseBottom) {
-      buyLicenseBottom.href = licensePurchaseUrl;
-      buyLicenseBottom.target = "_blank";
-      buyLicenseBottom.rel = "noopener noreferrer";
-    }
-
+    // --- Architektur-Erkennung fuer den passenden Download ---
     const archHintTop = document.getElementById("arch-hint-top");
     const archHintDownload = document.getElementById("arch-hint-download");
 
@@ -879,8 +1002,8 @@
     ];
 
     function setHint(text) {
-      archHintTop.textContent = text;
-      archHintDownload.textContent = text;
+      if (archHintTop) archHintTop.textContent = text;
+      if (archHintDownload) archHintDownload.textContent = text;
     }
 
     function markRecommended(buttons) {
@@ -899,25 +1022,27 @@
           if (data.platform === "macOS") {
             if (data.architecture === "x86") {
               markRecommended(intelButtons);
-              setHint("Empfohlene Version für deinen Mac: macOS Intel");
+              setHint("Empfohlene Version für deinen Mac: Apple Intel");
               return;
             }
 
             if (data.architecture === "arm") {
               markRecommended(armButtons);
-              setHint("Empfohlene Version für deinen Mac: macOS Apple Silicon");
+              setHint("Empfohlene Version für deinen Mac: Apple Silicon");
               return;
             }
           }
         }
       } catch (error) {
+        console.warn("Architekturerkennung nicht möglich:", error);
       }
 
+      // Fallback: navigator.platform ist veraltet, dient hier nur als grober Hinweis
       if (navigator.platform === "MacIntel") {
         markRecommended(intelButtons);
-        setHint("Hinweis: Dein Browser meldet MacIntel. Das ist oft Intel, auf neueren Macs kann die Erkennung aber ungenau sein.");
+        setHint("Hinweis: Dein Browser deutet auf einen Intel-Mac hin. Auf neueren Macs kann diese Erkennung ungenau sein – wähle im Zweifel manuell.");
       } else {
-        setHint("Wähle bitte die passende Version manuell: Intel für ältere Macs, Apple Silicon für M1, M2, M3 oder M4.");
+        setHint("Wähle bitte die passende Version manuell: Apple Intel für ältere Macs, Apple Silicon für M1, M2, M3 oder M4.");
       }
     }
 

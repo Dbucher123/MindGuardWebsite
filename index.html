@@ -3,8 +3,26 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#07101d" />
+
   <title>MindGuard | Fokus und Achtsamkeit am Bildschirm</title>
-  <link rel="icon" type="image/png" href="favicon.png" />
+  <meta name="description" content="MindGuard ist eine macOS-Desktop-App, die Ablenkung am Bildschirm erkennt und dezent an den Fokus erinnert. Lokale Analyse, ohne harte Sperren." />
+
+  <!-- Favicon (Browser-Tab + Homescreen) -->
+  <link rel="icon" href="favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
+  <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
+
+  <!-- Vorschau beim Teilen (Open Graph / Twitter) -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="MindGuard | Fokus und Achtsamkeit am Bildschirm" />
+  <meta property="og:description" content="macOS-Desktop-App, die Ablenkung am Bildschirm erkennt und dezent an den Fokus erinnert. Lokale Analyse, ohne harte Sperren." />
+  <meta property="og:url" content="https://dbucher123.github.io/MindGuardWebsite/" />
+  <meta property="og:image" content="https://dbucher123.github.io/MindGuardWebsite/hero-preview.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
   <style>
     :root {
       --bg: #07101d;
@@ -468,7 +486,7 @@
   <header>
     <div class="container nav">
       <a class="brand" href="#">
-        <img src="favicon.png" alt="MindGuard Logo">
+        <img src="apple-touch-icon.png" alt="MindGuard Logo">
         <span>MindGuard</span>
       </a>
 
@@ -530,7 +548,7 @@
         </div>
 
         <div class="hero-visual">
-          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige">
+          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige" decoding="async">
         </div>
       </div>
     </section>
@@ -570,7 +588,7 @@
 
         <div class="mini-preview">
           <div class="preview-image card">
-            <img src="gesichtserkennung.png" alt="MindGuard Vorschau mit Gesichtserkennung">
+            <img src="gesichtserkennung.png" alt="MindGuard Vorschau mit Gesichtserkennung" loading="lazy" decoding="async">
           </div>
 
           <div class="card">

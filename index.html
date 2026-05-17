@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#07101d" />
 
   <title>MindGuard | Fokus und Achtsamkeit am Bildschirm</title>
-  <meta name="description" content="MindGuard ist eine macOS-Desktop-App, die Ablenkung am Bildschirm erkennt und dezent an den Fokus erinnert. Lokale Analyse, ohne harte Sperren." />
+  <meta name="description" content="MindGuard hilft dir, fokussiert zu bleiben und deine Produktivität zu schützen. Die macOS-App erkennt Ablenkung am Bildschirm und erinnert dich dezent daran." />
 
   <!-- Favicon (Browser-Tab + Homescreen) -->
   <link rel="icon" href="favicon.ico" sizes="any" />
@@ -18,7 +18,7 @@
   <!-- Vorschau beim Teilen (Open Graph / Twitter) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="MindGuard | Fokus und Achtsamkeit am Bildschirm" />
-  <meta property="og:description" content="macOS-Desktop-App, die Ablenkung am Bildschirm erkennt und dezent an den Fokus erinnert. Lokale Analyse, ohne harte Sperren." />
+  <meta property="og:description" content="Bleib fokussiert und schütze deine Produktivität: Die macOS-App MindGuard erkennt Ablenkung am Bildschirm und erinnert dich dezent daran." />
   <meta property="og:url" content="https://dbucher123.github.io/MindGuardWebsite/" />
   <meta property="og:image" content="https://dbucher123.github.io/MindGuardWebsite/hero-preview.png" />
   <meta name="twitter:card" content="summary_large_image" />
@@ -594,7 +594,7 @@
           <div class="badge">MindGuard · Desktop-App für Fokus und Achtsamkeit</div>
           <h1>Bleib fokussiert! Schütze deine Produktivität 👨🏽‍💻</h1>
           <p class="lead">
-            MindGuard erkennt Ablenkung oder Inaktivität am Bildschirmarbeitsplatz und erinnert dich mit dezenten visuellen oder akustischen Signalen daran, den Fokus zurückzuholen.
+            MindGuard erkennt Ablenkung am Bildschirmarbeitsplatz und erinnert dich mit dezenten visuellen oder akustischen Signalen daran, den Fokus zurückzuholen.
           </p>
 
           <div class="cta-row">
@@ -705,7 +705,7 @@
             <div class="feature-list">
               <div class="feature-item">
                 <strong>Hinweis bei Ablenkung</strong>
-                Wird über längere Zeit eine Ablenkung erkannt, kann ein dezentes Pop-up eingeblendet werden.
+                Wird über längere Zeit eine Ablenkung erkannt, meldet sich MindGuard mit einem dezenten Pop-up, einem Signalton oder beidem, je nach deiner Einstellung.
               </div>
 
               <div class="feature-item">
@@ -714,8 +714,13 @@
               </div>
 
               <div class="feature-item">
-                <strong>Schnell zurücksetzen</strong>
-                Die Warnung lässt sich mit einem Klick schliessen, sobald der Fokus zurück ist.
+                <strong>Automatisch zurücksetzen</strong>
+                Sobald du wieder auf den Bildschirm schaust, setzt sich die Warnung von selbst zurück. Wie lange dein Blick dafür ruhig auf dem Bildschirm bleiben muss, lässt sich einstellen.
+              </div>
+
+              <div class="feature-item">
+                <strong>Wieder im Hintergrund</strong>
+                Nach dem Zurücksetzen minimiert sich MindGuard wieder vollständig und läuft im Hintergrund weiter, bis erneut eine längere Ablenkung erkannt wird.
               </div>
             </div>
           </div>
@@ -834,7 +839,7 @@
         <div class="card">
           <h3>Welche Version brauche ich?</h3>
           <p class="small">
-            Apple Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3 oder M4.
+            Apple Intel ist für ältere Macs mit Intel-Prozessor. Apple Silicon ist für Macs mit M1, M2, M3, M4 oder neuer.
           </p>
 
           <div class="notice">
@@ -912,7 +917,7 @@
           <p class="section-intro">
             Die Bildanalyse von MindGuard läuft vollständig lokal auf deinem Mac. Das Kamerabild wird nur im Arbeitsspeicher ausgewertet und nicht dauerhaft gespeichert, nicht hochgeladen und nicht an Dritte weitergegeben. Auf dem Gerät gespeichert werden ausschliesslich deine Einstellungen sowie, falls vorhanden, deine Lizenzinformationen. Es werden keine Konten angelegt und keine Nutzungsprofile erstellt.
           </p>
-          <p class="small">
+          <p class="section-intro" style="margin-bottom: 0;">
             Die Pro-Lizenz wird über den Anbieter Lemon Squeezy verkauft. Beim Aktivieren und danach in regelmässigen Abständen wird online geprüft, ob der Lizenzschlüssel gültig ist. Dabei werden nur der Lizenzschlüssel und eine anonymisierte Gerätekennung übermittelt, nicht dein echter Gerätename. Für die Zahlungsabwicklung gelten die Datenschutzbestimmungen von Lemon Squeezy.
           </p>
         </div>
@@ -1015,7 +1020,7 @@
         markRecommended(intelButtons);
         setHint("Hinweis: Dein Browser deutet auf einen Intel-Mac hin. Auf neueren Macs kann diese Erkennung ungenau sein. Wähle im Zweifel manuell.");
       } else {
-        setHint("Wähle bitte die passende Version manuell: Apple Intel für ältere Macs, Apple Silicon für M1, M2, M3, M4 oder M5.");
+        setHint("Wähle bitte die passende Version manuell: Apple Intel für ältere Macs, Apple Silicon für M1, M2, M3, M4 oder neuer.");
       }
     }
 

@@ -9,13 +9,11 @@
   <title>MindGuard</title>
   <meta name="description" content="MindGuard hilft dir, fokussiert zu bleiben und deine Produktivität zu schützen. Die macOS-App erkennt Ablenkung am Bildschirm und erinnert dich dezent daran." />
 
-  <!-- Favicon (Browser-Tab + Homescreen) -->
   <link rel="icon" href="favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png" />
   <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png" />
 
-  <!-- Vorschau beim Teilen (Open Graph / Twitter) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="MindGuard | Fokus und Achtsamkeit am Bildschirm" />
   <meta property="og:description" content="Bleib fokussiert und schütze deine Produktivität: Die macOS-App MindGuard erkennt Ablenkung am Bildschirm und erinnert dich dezent daran." />
@@ -70,7 +68,6 @@
       display: block;
     }
 
-    /* Sichtbarer Fokus fuer Tastatur-Navigation (Barrierefreiheit) */
     a:focus-visible,
     button:focus-visible,
     .button:focus-visible {
@@ -79,7 +76,6 @@
       border-radius: 8px;
     }
 
-    /* Sprunglink: erscheint nur bei Tastatur-Fokus */
     .skip-link {
       position: absolute;
       left: 12px;
@@ -633,7 +629,7 @@
         </div>
 
         <div class="hero-visual">
-          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichterkennung und Fokusanzeige" fetchpriority="high" decoding="async">
+          <img src="hero-preview.png" alt="Vorschau von MindGuard mit Gesichtserkennung und Fokusanzeige" fetchpriority="high" decoding="async">
         </div>
       </div>
     </section>
@@ -918,7 +914,7 @@
             Die Bildanalyse von MindGuard läuft vollständig lokal auf deinem Mac. Das Kamerabild wird nur im Arbeitsspeicher ausgewertet und nicht dauerhaft gespeichert, nicht hochgeladen und nicht an Dritte weitergegeben. Auf dem Gerät gespeichert werden ausschliesslich deine Einstellungen sowie, falls vorhanden, deine Lizenzinformationen. Es werden keine Konten angelegt und keine Nutzungsprofile erstellt.
           </p>
           <p class="section-intro" style="margin-bottom: 0; max-width: none;">
-            Die Pro-Lizenz wird über den Anbieter Lemon Squeezy verkauft. Beim Aktivieren und danach in regelmässigen Abständen wird online geprüft, ob der Lizenzschlüssel gültig ist. Dabei werden nur der Lizenzschlüssel und eine anonymisierte Gerätekennung übermittelt, nicht dein echter Gerätename. Für die Zahlungsabwicklung gelten die Datenschutzbestimmungen von Lemon Squeezy.
+            Die Pro-Lizenz wird über den Anbieter Lemon Squeezy verkauft. Beim Aktivieren und danach in regelmässigen Abständen wird online geprüft, ob der Lizenzschlüssel gültig ist. Dabei werden nur der Lizenzschlüssel und eine pseudonymisierte Gerätekennung übermittelt, nicht dein echter Gerätename. Für die Zahlungsabwicklung gelten die Datenschutzbestimmungen von Lemon Squeezy.
           </p>
         </div>
       </div>
@@ -940,7 +936,6 @@
   </footer>
 
   <script>
-    // --- Mobiles Navigationsmenue ---
     const navToggle = document.getElementById("nav-toggle");
     const navLinks = document.getElementById("nav-links");
 
@@ -951,7 +946,6 @@
         navToggle.setAttribute("aria-label", isOpen ? "Menü schliessen" : "Menü öffnen");
       });
 
-      // Menue schliessen, sobald ein Link angeklickt wird
       navLinks.addEventListener("click", (event) => {
         if (event.target.closest("a")) {
           navLinks.classList.remove("open");
@@ -961,7 +955,6 @@
       });
     }
 
-    // --- Architektur-Erkennung fuer den passenden Download ---
     const archHintTop = document.getElementById("arch-hint-top");
     const archHintDownload = document.getElementById("arch-hint-download");
 
@@ -1011,7 +1004,6 @@
         console.warn("Architekturerkennung nicht möglich:", error);
       }
 
-      // Fallback: navigator.platform ist veraltet, dient hier nur als grober Hinweis
       if (navigator.platform === "MacIntel") {
         markRecommended(intelButtons);
         setHint("Hinweis: Dein Browser deutet auf einen Intel-Mac hin. Auf neueren Macs kann diese Erkennung ungenau sein. Wähle im Zweifel manuell.");

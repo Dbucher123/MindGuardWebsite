@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://dbucher123.github.io/MindGuardWebsite/sitemap.xml
